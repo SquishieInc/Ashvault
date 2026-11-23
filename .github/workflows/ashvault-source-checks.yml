@@ -1,0 +1,20 @@
+name: Ashvault source validation
+
+on:
+  push:
+    branches: [main, "audit/**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  repository-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate Unity project structure and campaign data
+        run: python3 Tools/check_unity_project.py
