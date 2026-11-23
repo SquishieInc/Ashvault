@@ -8,6 +8,10 @@ namespace Ashvault
     public sealed class EnvironmentSpriteAnimator : MonoBehaviour
     {
         private static readonly Dictionary<string, Sprite[]> Cache = new Dictionary<string, Sprite[]>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetCache() => Cache.Clear();
+
         private SpriteRenderer sprite;
         private Sprite[] frames;
         private float speed, offset;
@@ -15,7 +19,8 @@ namespace Ashvault
         {
             sprite = GetComponent<SpriteRenderer>();
             string path = "Textures/Animated/" + kind + "_frames";
-            if (!Cache.TryGetValue(path, out frames))
+            if (!Cache.TryGetValue(path, out frames) ||
+                frames == null || frames.Length != 4 || frames[0] == null)
             {
                 var tex = Resources.Load<Texture2D>(path);
                 if (tex == null || tex.width != 512 || tex.height != 128) return;
