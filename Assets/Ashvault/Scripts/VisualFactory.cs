@@ -9,10 +9,23 @@ namespace Ashvault
         private static readonly Dictionary<string, Sprite> Sprites = new Dictionary<string, Sprite>();
         private static readonly Dictionary<string, Material> Materials = new Dictionary<string, Material>();
 
+        // Static dictionaries may survive exiting Play mode when Domain Reload is disabled.
+        // Their UnityEngine.Object values do not necessarily survive, so clear them every run.
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetCaches()
+        {
+            Sprites.Clear();
+            Materials.Clear();
+        }
+
         public static Sprite LoadSprite(string name, float pixelsPerUnit = 45f)
         {
             string key = name + ":" + pixelsPerUnit;
-            if (Sprites.TryGetValue(key, out var cached)) return cached;
+            if (Sprites.TryGetValue(key, out var cached))
+            {
+                if (cached != null) return cached;
+                Sprites.Remove(key);
+            }
             var image = Resources.Load<Texture2D>("Textures/" + name);
             if (image == null)
             {
@@ -31,7 +44,12 @@ namespace Ashvault
         {
             Vector2 repeat = tileRepeat ?? Vector2.one;
             string key = textureName + ":" + ColorUtility.ToHtmlStringRGBA(tint) + ":" + repeat.x + ":" + repeat.y;
-            if (Materials.TryGetValue(key, out var cached)) return cached;
+            if (Materials.TryGetValue(key, out var cached))
+            {
+                if (cached != null) return cached;
+                // Unity destroyed the native material after the previous Play session.
+                Materials.Remove(key);
+            }
             bool usingScriptablePipeline = GraphicsSettings.currentRenderPipeline != null;
             Shader shader = usingScriptablePipeline
                 ? (Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard"))
@@ -68,7 +86,12 @@ namespace Ashvault
         private static Material SpriteMaterial(string image, bool lit)
         {
             string key = (lit ? "lit:" : "unlit:") + image;
-            if (Materials.TryGetValue(key, out var cached)) return cached;
+            if (Materials.TryGetValue(key, out var cached))
+            {
+                if (cached != null) return cached;
+                // Unity destroyed the native material after the previous Play session.
+                Materials.Remove(key);
+            }
             Shader shader = lit ? Shader.Find("Universal Render Pipeline/Lit") :
                 Shader.Find("Universal Render Pipeline/Unlit");
             if (shader == null) shader = Shader.Find(lit ? "Standard" : "Unlit/Transparent Cutout");
