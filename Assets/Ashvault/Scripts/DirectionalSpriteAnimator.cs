@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace Ashvault
 {
-    // Atlas rows are laid out TOP first, columns: front, front-right, right,
-    // rear-right, back, rear-left, left, front-left. Sprite.Create uses bottom origin.
-    // v3 8x6 atlases remain usable; v4 reaver adds 11 distinct timed pose rows.
+    // Columns: front, front-right, right, rear-right, back, rear-left, left, front-left.
+    // The legacy 8x6 generator stores idle in the TOP texture row, but the v4
+    // Skeleton Reaver 8x11 generator stores idle in the BOTTOM texture row.
+    // Sprite.Create takes bottom-origin texture coordinates. Keep both formats
+    // compatible until all atlases are re-authored in one consistent format.
     [RequireComponent(typeof(SpriteRenderer))]
     public sealed class DirectionalSpriteAnimator : MonoBehaviour
     {
@@ -54,10 +56,21 @@ namespace Ashvault
             tex.filterMode=FilterMode.Point;
             int rows=tex.height/CellHeight;
             found=new Sprite[Directions*rows];
-            for(int row=0;row<rows;row++)for(int dir=0;dir<Directions;dir++)
-                found[row*Directions+dir]=Sprite.Create(tex,
-                    new Rect(dir*CellWidth,(rows-row-1)*CellHeight,CellWidth,CellHeight),
-                    new Vector2(.5f,.5f),64f,0,SpriteMeshType.FullRect);
+            for (int row = 0; row < rows; row++)
+            {
+                // 11-row Reaver atlases were authored with row zero at the bottom;
+                // older 6-row sheets were authored with row zero at the top.
+                // A uniform Y calculation incorrectly selected collapsing/death
+                // frames for the walk cycle and walk frames for death.
+                int textureY = rows == 11 ? row * CellHeight : (rows - row - 1) * CellHeight;
+                for (int dir = 0; dir < Directions; dir++)
+                {
+                    found[row * Directions + dir] = Sprite.Create(
+                        tex,
+                        new Rect(dir * CellWidth, textureY, CellWidth, CellHeight),
+                        new Vector2(.5f, .5f), 64f, 0, SpriteMeshType.FullRect);
+                }
+            }
             Atlases[kind]=found;
             return found;
         }
