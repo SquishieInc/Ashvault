@@ -7,10 +7,18 @@ namespace Ashvault
     public static class AshAudio
     {
         private static readonly Dictionary<string, AudioClip> Cached = new Dictionary<string, AudioClip>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetCache() => Cached.Clear();
+
         public static AudioClip Get(string name)
         {
             if (string.IsNullOrEmpty(name)) return null;
-            if (Cached.TryGetValue(name, out var clip)) return clip;
+            if (Cached.TryGetValue(name, out var clip))
+            {
+                if (clip != null) return clip;
+                Cached.Remove(name);
+            }
             clip = Resources.Load<AudioClip>("Audio/" + name);
             if (clip == null) Debug.LogWarning("Ashvault missing audio: " + name);
             Cached[name] = clip;
