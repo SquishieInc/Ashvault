@@ -254,7 +254,8 @@ namespace Ashvault
             switch (Spec.Attack)
             {
                 case EnemyAttack.Claw:
-                    if (distance <= Spec.AttackRange + .2f && HasSight(out _, out _))
+                    if (HasSight(out _, out float currentDistance) &&
+                        currentDistance <= Spec.AttackRange + .2f)
                         game.Player.TakeDamage(Spec.Damage);
                     break;
                 case EnemyAttack.Charge:
