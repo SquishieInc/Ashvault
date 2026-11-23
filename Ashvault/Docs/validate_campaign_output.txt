@@ -1,0 +1,13 @@
+PASS  E01_L01  Ashen Threshold            encounters=12  secrets=3  sectors=4
+PASS  E01_L02  The Iron Reliquary         encounters=15  secrets=3  sectors=4
+PASS  E01_L03  Throne of the Ember King   encounters=18  secrets=3  sectors=4
+PASS  E02_L01  Mirewatch Crossing         encounters=13  secrets=3  sectors=4
+PASS  E02_L02  Rotwater Sanctuary         encounters=16  secrets=3  sectors=4
+PASS  E02_L03  Heart of the Mire          encounters=19  secrets=3  sectors=4
+PASS  E03_L01  Broken Observatory         encounters=11  secrets=3  sectors=4
+PASS  E03_L02  The Starless Chapel        encounters=14  secrets=3  sectors=4
+PASS  E03_L03  Crown of the Void          encounters=17  secrets=3  sectors=4
+
+PASS: 9 levels / 3 episodes / 8 classes / 135 authored encounter anchors / 27 secrets / 15 enemy archetypes / 3 final bosses / 39 asset references
+All levels have a three-key path and access to every secret for each class.
+WARNING: Unity compilation, real collision/path movement, iOS performance and builds NOT tested here.

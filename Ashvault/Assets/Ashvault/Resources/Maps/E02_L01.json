@@ -1,0 +1,577 @@
+{
+  "id": "E02_L01",
+  "episode": 2,
+  "level": 1,
+  "title": "Mirewatch Crossing",
+  "episodeTitle": "THE WEEPING FEN",
+  "intro": "EPISODE 2 / MAP 1: MIREWATCH CROSSING",
+  "width": 48,
+  "height": 34,
+  "rows": [
+    "################################################",
+    "##################.......................#######",
+    "##################7#####################.#######",
+    "#################...........############.#######",
+    "#################...........############.#######",
+    "#################...........2...........########",
+    "#################.......a...#......####.########",
+    "##..........................s.+....####.########",
+    "##.##############..................####.########",
+    "##.##############......+....#......####.########",
+    "##.##############...........#......####.########",
+    "##.##############...........###########.########",
+    "##.###........########.################.########",
+    "##.###.................################.########",
+    "##.###........########.#####5.............######",
+    "##.###........########.#####.##########.#.######",
+    "##.###........########.####.4.......###.#.######",
+    "##.###################.####..######.###.#.######",
+    "##.###################.####..#####..........####",
+    "##.##############............#####..#....#..####",
+    "##1##############...........######..........#..#",
+    "##..........#####..#.....#..######......c...s+.#",
+    "###.........#####...........#....#..........#..#",
+    "..#......b..#####................#...+......####",
+    ".+s.........#####....w.........A............##.#",
+    "..#...P.......B.............#....#..........CZX#",
+    "###.........#####...........#....#..#....#..##.#",
+    "###....+....#####..#.....#..#....#..........####",
+    "###.........#####...........8####...........####",
+    "###.........6####............####.##############",
+    "##########3#.######.######.#......##############",
+    "##########..........######.#####################",
+    "############...............#####################",
+    "################################################"
+  ],
+  "sectors": [
+    {
+      "name": "Entrance",
+      "minX": 3,
+      "minZ": 4,
+      "maxX": 11,
+      "maxZ": 12,
+      "floor": 0.0,
+      "ceiling": 4.6
+    },
+    {
+      "name": "Great Hall",
+      "minX": 17,
+      "minZ": 4,
+      "maxX": 27,
+      "maxZ": 14,
+      "floor": 0.24,
+      "ceiling": 5.2
+    },
+    {
+      "name": "Sigil Vault",
+      "minX": 17,
+      "minZ": 22,
+      "maxX": 27,
+      "maxZ": 30,
+      "floor": 0.22,
+      "ceiling": 4.45
+    },
+    {
+      "name": "Throne",
+      "minX": 34,
+      "minZ": 5,
+      "maxX": 43,
+      "maxZ": 15,
+      "floor": 0.3,
+      "ceiling": 5.6
+    }
+  ],
+  "enemies": [
+    {
+      "x": 10,
+      "z": 11,
+      "kind": "GraveHound",
+      "mode": "Guard"
+    },
+    {
+      "x": 18,
+      "z": 8,
+      "kind": "GraveHound",
+      "mode": "Patrol"
+    },
+    {
+      "x": 23,
+      "z": 11,
+      "kind": "FenWisp",
+      "mode": "Guard"
+    },
+    {
+      "x": 20,
+      "z": 24,
+      "kind": "FenWisp",
+      "mode": "Patrol"
+    },
+    {
+      "x": 26,
+      "z": 27,
+      "kind": "PlagueShaman",
+      "mode": "Guard"
+    },
+    {
+      "x": 36,
+      "z": 9,
+      "kind": "GraveHound",
+      "mode": "Guard"
+    },
+    {
+      "x": 38,
+      "z": 13,
+      "kind": "PlagueShaman",
+      "mode": "Ambush"
+    },
+    {
+      "x": 39,
+      "z": 10,
+      "kind": "MossGolem",
+      "mode": "Guard"
+    },
+    {
+      "x": 24,
+      "z": 8,
+      "kind": "FenWisp",
+      "mode": "Patrol"
+    },
+    {
+      "x": 19,
+      "z": 13,
+      "kind": "GraveHound",
+      "mode": "Ambush"
+    },
+    {
+      "x": 11,
+      "z": 19,
+      "kind": "PlagueShaman",
+      "mode": "Patrol"
+    },
+    {
+      "x": 33,
+      "z": 23,
+      "kind": "FenWisp",
+      "mode": "Ambush"
+    },
+    {
+      "x": 7,
+      "z": 20,
+      "kind": "FenWisp",
+      "mode": "Ambush"
+    }
+  ],
+  "classDrops": [
+    {
+      "classId": 0,
+      "x": 8,
+      "z": 26
+    },
+    {
+      "classId": 1,
+      "x": 29,
+      "z": 28
+    },
+    {
+      "classId": 2,
+      "x": 17,
+      "z": 2
+    },
+    {
+      "classId": 3,
+      "x": 33,
+      "z": 17
+    },
+    {
+      "classId": 4,
+      "x": 30,
+      "z": 19
+    },
+    {
+      "classId": 5,
+      "x": 13,
+      "z": 1
+    },
+    {
+      "classId": 6,
+      "x": 34,
+      "z": 32
+    },
+    {
+      "classId": 7,
+      "x": 29,
+      "z": 3
+    }
+  ],
+  "mechanisms": [
+    {
+      "kind": "Lift",
+      "x": 23,
+      "z": 6,
+      "travel": 0.8,
+      "period": 7.25,
+      "phase": 0.853,
+      "damage": 0,
+      "axisX": 0.0,
+      "axisZ": 0.0
+    },
+    {
+      "kind": "MovingPlatform",
+      "x": 21,
+      "z": 12,
+      "travel": 1.25,
+      "period": 7.07,
+      "phase": 0.162,
+      "damage": 0,
+      "axisX": 1.0,
+      "axisZ": 0.0
+    },
+    {
+      "kind": "Crusher",
+      "x": 4,
+      "z": 6,
+      "travel": 3.15,
+      "period": 6.33,
+      "phase": 0.994,
+      "damage": 21,
+      "axisX": 0.0,
+      "axisZ": 0.0
+    },
+    {
+      "kind": "RuneTrap",
+      "x": 26,
+      "z": 9,
+      "travel": 0.1,
+      "period": 6.6,
+      "phase": 0.442,
+      "damage": 12,
+      "axisX": 0.0,
+      "axisZ": 0.0
+    }
+  ],
+  "fixtures": [
+    {
+      "x": 25,
+      "z": 25,
+      "kind": "Brazier",
+      "shadows": true
+    },
+    {
+      "x": 18,
+      "z": 26,
+      "kind": "WallTorch",
+      "shadows": true
+    },
+    {
+      "x": 42,
+      "z": 13,
+      "kind": "Lantern",
+      "shadows": false
+    },
+    {
+      "x": 40,
+      "z": 19,
+      "kind": "Brazier",
+      "shadows": false
+    },
+    {
+      "x": 40,
+      "z": 5,
+      "kind": "WallTorch",
+      "shadows": false
+    },
+    {
+      "x": 28,
+      "z": 10,
+      "kind": "Lantern",
+      "shadows": false
+    },
+    {
+      "x": 34,
+      "z": 27,
+      "kind": "Brazier",
+      "shadows": false
+    },
+    {
+      "x": 39,
+      "z": 24,
+      "kind": "WallTorch",
+      "shadows": false
+    }
+  ],
+  "decorations": [
+    {
+      "x": 43,
+      "z": 14,
+      "kind": "mushrooms",
+      "width": 2.0,
+      "height": 1.9,
+      "glow": true
+    },
+    {
+      "x": 27,
+      "z": 22,
+      "kind": "roots",
+      "width": 2.6,
+      "height": 2.2,
+      "glow": false
+    },
+    {
+      "x": 17,
+      "z": 29,
+      "kind": "idol",
+      "width": 2.25,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 43,
+      "z": 6,
+      "kind": "totem",
+      "width": 1.8,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 2,
+      "z": 23,
+      "kind": "mushrooms",
+      "width": 2.0,
+      "height": 1.9,
+      "glow": true
+    },
+    {
+      "x": 34,
+      "z": 12,
+      "kind": "roots",
+      "width": 2.6,
+      "height": 2.2,
+      "glow": false
+    },
+    {
+      "x": 17,
+      "z": 6,
+      "kind": "idol",
+      "width": 2.25,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 32,
+      "z": 11,
+      "kind": "totem",
+      "width": 1.8,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 35,
+      "z": 19,
+      "kind": "mushrooms",
+      "width": 2.0,
+      "height": 1.9,
+      "glow": true
+    },
+    {
+      "x": 2,
+      "z": 16,
+      "kind": "roots",
+      "width": 2.6,
+      "height": 2.2,
+      "glow": false
+    },
+    {
+      "x": 36,
+      "z": 28,
+      "kind": "idol",
+      "width": 2.25,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 29,
+      "z": 24,
+      "kind": "totem",
+      "width": 1.8,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 39,
+      "z": 22,
+      "kind": "mushrooms",
+      "width": 2.0,
+      "height": 1.9,
+      "glow": true
+    },
+    {
+      "x": 19,
+      "z": 5,
+      "kind": "roots",
+      "width": 2.6,
+      "height": 2.2,
+      "glow": false
+    },
+    {
+      "x": 15,
+      "z": 26,
+      "kind": "idol",
+      "width": 2.25,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 9,
+      "z": 21,
+      "kind": "totem",
+      "width": 1.8,
+      "height": 2.8,
+      "glow": false
+    },
+    {
+      "x": 18,
+      "z": 22,
+      "kind": "mushrooms",
+      "width": 2.0,
+      "height": 1.9,
+      "glow": true
+    },
+    {
+      "x": 37,
+      "z": 15,
+      "kind": "roots",
+      "width": 2.6,
+      "height": 2.2,
+      "glow": false
+    }
+  ],
+  "switches": [
+    {
+      "x": 13,
+      "z": 8,
+      "targetX": 14,
+      "targetZ": 8,
+      "name": "B_rune_lever"
+    },
+    {
+      "x": 30,
+      "z": 9,
+      "targetX": 31,
+      "targetZ": 9,
+      "name": "A_rune_lever"
+    },
+    {
+      "x": 43,
+      "z": 8,
+      "targetX": 44,
+      "targetZ": 8,
+      "name": "C_rune_lever"
+    }
+  ],
+  "animatedSurfaces": [
+    {
+      "x": 20,
+      "z": 5,
+      "kind": "mire",
+      "width": 0.82
+    },
+    {
+      "x": 40,
+      "z": 10,
+      "kind": "mire",
+      "width": 0.82
+    },
+    {
+      "x": 19,
+      "z": 29,
+      "kind": "mire",
+      "width": 0.82
+    }
+  ],
+  "polygonSectors": [
+    {
+      "id": "Hexagonal_Dais",
+      "kind": "Platform",
+      "floor": 0.28,
+      "ceiling": 4.2,
+      "vertices": [
+        {
+          "x": 7.9,
+          "y": 4.0
+        },
+        {
+          "x": 9.6,
+          "y": 3.95
+        },
+        {
+          "x": 10.1,
+          "y": 4.8
+        },
+        {
+          "x": 9.35,
+          "y": 5.15
+        },
+        {
+          "x": 9.9,
+          "y": 6.1
+        },
+        {
+          "x": 8.0,
+          "y": 5.85
+        }
+      ]
+    },
+    {
+      "id": "Broken_Floor_Pit",
+      "kind": "Pit",
+      "floor": -0.38,
+      "ceiling": 4.8,
+      "vertices": [
+        {
+          "x": 3.5,
+          "y": 9.5
+        },
+        {
+          "x": 4.5,
+          "y": 9.5
+        },
+        {
+          "x": 4.5,
+          "y": 10.5
+        },
+        {
+          "x": 3.5,
+          "y": 10.5
+        }
+      ]
+    }
+  ],
+  "wallSegments": [
+    {
+      "id": "False_Ashlar_Passage",
+      "x1": 3.5300000000000002,
+      "z1": 10.55,
+      "x2": 4.47,
+      "z2": 10.55,
+      "bottom": 0,
+      "top": 3.2,
+      "thickness": 0.18,
+      "secret": true,
+      "blocksMovement": true
+    }
+  ],
+  "stairs": [
+    {
+      "id": "Ritual_Stairs",
+      "x": 8.0,
+      "z": 3.3,
+      "axisX": 0,
+      "axisZ": 1,
+      "steps": 3,
+      "width": 0.66,
+      "depth": 0.48,
+      "baseHeight": 0,
+      "rise": 0.1
+    }
+  ]
+}
