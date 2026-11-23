@@ -11,6 +11,10 @@ namespace Ashvault
     {
         private const int Directions=8, CellWidth=96, CellHeight=144;
         private static readonly Dictionary<string,Sprite[]> Atlases=new Dictionary<string,Sprite[]>();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetAtlases() => Atlases.Clear();
+
         private SpriteRenderer artwork;
         private Transform actor;
         private Sprite[] frames;
@@ -35,7 +39,11 @@ namespace Ashvault
         }
         private static Sprite[] GetAtlas(string kind)
         {
-            if (Atlases.TryGetValue(kind,out var found))return found;
+            if (Atlases.TryGetValue(kind,out var found))
+            {
+                if (found != null && found.Length > 0 && found[0] != null) return found;
+                Atlases.Remove(kind);
+            }
             var tex=Resources.Load<Texture2D>("Textures/Directional/"+kind+"_directions");
             if(tex==null||tex.width!=CellWidth*Directions ||
                 tex.height%CellHeight!=0 || (tex.height/CellHeight !=6 && tex.height/CellHeight!=11))
