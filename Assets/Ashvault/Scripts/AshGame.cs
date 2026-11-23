@@ -31,6 +31,8 @@ namespace Ashvault
         public EnemyAI CurrentBoss { get; private set; }
 
         private RetroScreen screen;
+        private Camera displayCamera;
+        private AudioListener menuAudioListener;
         private readonly HashSet<EnemyAI> activeEnemies = new HashSet<EnemyAI>();
         public IEnumerable<EnemyAI> ActiveEnemies => activeEnemies;
 
@@ -40,6 +42,20 @@ namespace Ashvault
             Instance = this;
             Application.targetFrameRate = 60;
             screen = gameObject.AddComponent<RetroScreen>();
+
+            // The FPS camera renders to a low-resolution RenderTexture, not Display 1.
+            // A real display camera is required for the Game view even when OnGUI
+            // presents the render texture and the entire class menu.
+            var display = new GameObject("DISPLAY / PRESENTATION CAMERA");
+            display.transform.SetParent(transform, false);
+            displayCamera = display.AddComponent<Camera>();
+            displayCamera.targetDisplay = 0;
+            displayCamera.clearFlags = CameraClearFlags.SolidColor;
+            displayCamera.backgroundColor = new Color(.075f, .065f, .085f);
+            displayCamera.cullingMask = 0;
+            displayCamera.depth = -100f;
+            // Only the menu/presentation listener should exist before the player spawns.
+            menuAudioListener = display.AddComponent<AudioListener>();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -86,8 +102,14 @@ namespace Ashvault
             screen.Unbind();
             if (WorldRoot != null) Destroy(WorldRoot);
             if (Player != null) Destroy(Player.gameObject);
-            foreach (var camera in FindObjectsByType<Camera>(FindObjectsSortMode.None)) camera.enabled = false;
-            foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsSortMode.None)) listener.enabled = false;
+            // Keep the presentation camera/audio listener enabled during map building.
+            // If building fails, the menu still renders and Unity still has a listener.
+            foreach (var camera in FindObjectsByType<Camera>(FindObjectsSortMode.None))
+                if (camera != displayCamera) camera.enabled = false;
+            foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsSortMode.None))
+                if (listener != menuAudioListener) listener.enabled = false;
+            if (displayCamera != null) displayCamera.enabled = true;
+            if (menuAudioListener != null) menuAudioListener.enabled = true;
 
             activeEnemies.Clear();
             CurrentBoss = null;
@@ -108,6 +130,8 @@ namespace Ashvault
             Player.Initialize(this, SelectedClass);
             if (carry.HasValue) Player.RestoreCarry(carry.Value);
             PlayerCamera = Player.View;
+            // The player's camera owns the sole listener during gameplay.
+            if (menuAudioListener != null) menuAudioListener.enabled = false;
             screen.Bind(PlayerCamera);
             Notify(level.intro + " / FIND 3 SIGILS");
             LockPointer();
@@ -141,7 +165,16 @@ namespace Ashvault
             Cursor.visible = true;
             if (screen != null) screen.Unbind();
             if (WorldRoot != null) Destroy(WorldRoot);
+            // Destroy is deferred to the end of the frame; disable the old listener now.
+            if (PlayerCamera != null)
+            {
+                PlayerCamera.enabled = false;
+                var listener = PlayerCamera.GetComponent<AudioListener>();
+                if (listener != null) listener.enabled = false;
+            }
             if (Player != null) Destroy(Player.gameObject);
+            if (displayCamera != null) displayCamera.enabled = true;
+            if (menuAudioListener != null) menuAudioListener.enabled = true;
             WorldRoot = null;
             Player = null;
             PlayerCamera = null;
